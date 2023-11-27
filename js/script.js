@@ -1,10 +1,15 @@
+// argButtonName
+
+const 
+	buttonRock = document.getElementById('button-rock'),
+	buttonPaper = document.getElementById('button-paper'), 
+	buttonScissors = document.getElementById('button-scissors');
+
 let argButtonName;
 
 function buttonClicked(argButtonName) {
-	clearMessages();
-	console.log(argButtonName + ' został kliknięty');
 
-	let argComputerMove, argMoveId, argPlayerMove, computerMove, playerInput, playerMove, randomNumber;
+	let argComputerMove, argPlayerMove, computerMove, playerInput, playerMove;
 
 	// ta funkcja zwraca wynik w oparciu o ruch gracza oraz ruch komputera
 	function displayResult(argPlayerMove, argComputerMove) {
@@ -24,8 +29,11 @@ function buttonClicked(argButtonName) {
 		}
 
 	// ta funkcja zwraca ruch losowy komputera
-	function getMoveName(argMoveId) {
-		console.log('wywołano funkcję getMoveName z argumentem: ' + argMoveId);
+	function getMoveName() {
+
+		let argMoveId = Math.floor(Math.random() * 3 + 1);
+		console.log('wylosowana liczba to: ' + argMoveId);
+
 		if (argMoveId == 1) {
 		return 'kamień';
 		} else if (argMoveId == 2) {
@@ -38,22 +46,18 @@ function buttonClicked(argButtonName) {
 		}
 		}
 
+
+	clearMessages();
+	console.log(argButtonName + ' został kliknięty');
+
 	playerMove = argButtonName;
 	console.log('ruch gracza to: ' + playerMove);
-	randomNumber = Math.floor(Math.random() * 3 + 1);
-	console.log('wylosowana liczba to: ' + randomNumber);
-	computerMove = getMoveName(randomNumber);
+	computerMove = getMoveName();
 	console.log('ruch komputera to: ' + computerMove);
 	displayResult(playerMove, computerMove);
 
 
 	}
-
-const 
-	buttonRock = document.getElementById('button-rock'),
-	buttonPaper = document.getElementById('button-paper'), 
-	buttonScissors = document.getElementById('button-scissors');
-
 
 buttonRock.addEventListener('click', function(){ buttonClicked('kamień'); });
 buttonPaper.addEventListener('click', function(){ buttonClicked('papier'); });
